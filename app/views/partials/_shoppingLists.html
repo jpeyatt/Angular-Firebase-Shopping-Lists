@@ -1,0 +1,46 @@
+<div class="list-group">
+
+    <!-- Add a Shopping List -->
+    <div class="text-center">
+        <button data-toggle="modal" data-target="#postModal" class="btn btn-warning">Create List</button><br/><br/>
+    </div>
+
+    <!-- Search -->
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </div>
+            <input type="text" ng-model="searchList" placeholder="Search" class="form-control"/>
+        </div>
+    </div> <!-- / Search -->
+
+    <br/><br/>
+
+    <!-- Placeholder for no Shopping Lists -->
+    <div ng-show="lists.length == 0" class="text-center"><i>You have no Shopping Lists</i></div>
+
+    <!-- Shopping Lists -->
+            <span ng-repeat="list in lists | filter: {title:searchList}  | orderBy: 'datetime':true">
+                <a href="#/browse/{{list.$id}}" class="item-link">
+                    <div class="list-group-item">
+                        <div class="col-sm-1 list-selected-icon">
+                            <i class="mdi-toggle-radio-button-on" ng-show="selectedList.$id == list.$id"></i>
+                            <i class="mdi-toggle-radio-button-off" ng-hide="selectedList.$id == list.$id"></i>
+                        </div>
+                        <div class="col-sm-7">
+                            <h3 class="list-group-item-heading">{{list.title | limitTo: titleCharLimit}}
+                                {{list.title.length > titleCharLimit ? "..." : ""}}</h3>
+                            <span class="list-group-item-text">
+                                <span am-time-ago="{{list.datetime}}"></span>
+                            </span>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4 class="pull-right">{{list.store}}</h4>
+                        </div>
+                    </div>
+                </a>
+                <hr/>
+            </span> <!-- / List item -->
+
+</div>

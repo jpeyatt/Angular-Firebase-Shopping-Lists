@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ng-app="SlApp">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <title>ng Shopping List</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/material.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/material-fullpalette.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/roboto.css"/>
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css"/>
+
+    <style>
+
+
+        .user-dropdown .gravatar {
+            width: 32px;
+            margin-right: 8px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .user-dropdown .mdi-navigation-expand-more {
+            vertical-align: middle;
+            font-size: 16px;
+            padding: 0 0 2px 2px;
+        }
+
+        #toast-container {
+            top: 100px;
+        }
+
+        .detail-content {
+            padding: 0px 0 0 40px;
+        }
+        .detail-placeholder {
+            border-radius: 4px;
+            padding: 22px 0 0 0px;
+        }
+
+        .list-selected-icon {
+            padding-left: 0;
+            width: 5%;
+        }
+
+        .shopping-list-edit-dropdown li i {
+            font-size: 16px;
+            margin-right: 4px;
+        }
+
+        .list-items-table {
+            width: 100%;
+        }
+
+        .list-items-table .list-item {
+            font-size: 16px;
+        }
+
+        .list-item-check-box i {
+            font-size: 18px;
+        }
+        
+        .checked-list-item {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .delete-list-item {
+            font-size: 20px;
+            color: red;
+            opacity: .75;
+        }
+
+        .delete-list-item:hover {
+            opacity: 1;
+        }
+
+        .panel-title {
+            font-size: 20px;
+            line-height: 34px;
+        }
+
+        .main-content-panel {
+            padding-bottom: 44px;
+        }
+        
+    </style>
+
+</head>
+<body>
+
+<div class="panel main-content-panel">
+
+    <div ng-include="'app/views/partials/_navigation.html'"></div>
+
+    <div id="toast-container"></div>
+
+    <div class="container">
+        <div ng-view></div>
+    </div>
+
+</div>
+
+<!-- Vendor Libraries -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+<script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
+
+<!-- App References -->
+<script src="app/app.js"></script>
+<script src="app/services/auth.js"></script>
+<script src="app/services/shoppingList.js"></script>
+<script src="app/services/listItems.js"></script>
+<script src="app/controllers/listController.js"></script>
+<script src="app/controllers/authController.js"></script>
+<script src="app/controllers/navController.js"></script>
+<script src="app/controllers/browseController.js"></script>
+
+</body>
+</html>

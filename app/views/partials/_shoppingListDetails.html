@@ -1,0 +1,113 @@
+<div ng-controller="BrowseController">
+
+    <!-- Placeholder when no Shopping List is selected -->
+    <img ng-hide="selectedList" src="images/detail-placeholder.jpg" class="img-responsive detail-placeholder" alt=""/>
+
+    <!-- Shopping List Details -->
+    <div ng-show="selectedList">
+        <h2>{{selectedList.title}}</h2>
+
+        <div class="row">
+            <div class="col-md-9">
+                <br/>
+                <div class="row">
+                    <i class="mdi-device-access-time"></i>  <i>Created <span am-time-ago="selectedList.datetime"></span> </i>
+                </div>
+            </div>
+
+            <!-- Actions Menu -->
+            <div class="col-md-3">
+                <div class="btn-group shopping-list-edit-dropdown pull-right">
+                    <a href="" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown"><i class="mdi-action-settings"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="" data-toggle="modal" data-target="#editModal"><i class="mdi-editor-mode-edit"></i> Edit</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#deleteModal"><i class="mdi-action-delete"></i> Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Description</div>
+            <div class="panel-body">
+                <p>{{selectedList.description}}</p>
+            </div>
+        </div>
+
+        <br/>
+
+        <!-- Add Item -->
+        <div class="row">
+            <form ng-submit="addItem()">
+                <div class="col-sm-6">
+                    <input type="text" ng-model="newItem.name" class="form-control" placeholder="New Item"/>
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" ng-model="newItem.qty" class="form-control" placeholder="How Much?"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" value="Add" class="btn btn-sm btn-info"/>
+                </div>
+            </form>
+        </div>
+
+        <!-- Unchecked List Items -->
+        <table class="list-items-table">
+            <!-- Item -->
+            <tr ng-show="remainingCount == 0"><td><i>You have no items to get</i></td></tr>
+            <tr ng-repeat="item in items | filter: {checked: false}">
+                <td>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-1 list-item-check-box">
+                                <input type="checkbox" ng-model="item.checked" ng-change="updateItem(item)" class="filled-in"/>
+                            </div>
+                            <div class="col-sm-6 list-item" ng-class="{'checked-list-item': item.checked}">{{item.name}}</div>
+                            <div class="col-sm-4 list-item" ng-class="{'checked-list-item': item.checked}">{{item.qty}}</div>
+                            <div class="col-sm-1">
+                                <a href="" ng-click="deleteItem(item)"><i class="mdi-action-highlight-remove delete-list-item"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                </td>
+            </tr>
+        </table>
+
+        <br/><br/>
+
+        <div ng-hide="completedCount == 0">
+            <div class="row text-center">
+                Don't show items I've checked off
+                <input ng-model="dontShowDone" type="checkbox"/>
+            </div>
+
+            <!-- Checked (done) Items -->
+            <hr/>
+            <h4 ng-hide="dontShowDone">Done</h4>
+            <table class="list-items-table" ng-hide="dontShowDone">
+                <!-- Item -->
+                <tr ng-repeat="itemChecked in items | filter: {checked: true}">
+                    <td>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-1 list-item-check-box">
+                                    <input type="checkbox" ng-model="itemChecked.checked" ng-change="updateItem(itemChecked)" class="filled-in"/>
+                                </div>
+                                <div class="col-sm-6 list-item" ng-class="{'checked-list-item': itemChecked.checked}">{{itemChecked.name}}</div>
+                                <div class="col-sm-4 list-item" ng-class="{'checked-list-item': itemChecked.checked}">{{itemChecked.qty}}</div>
+                                <div class="col-sm-1">
+                                    <a href="" ng-click="deleteItem(itemChecked)"><i class="mdi-action-highlight-remove delete-list-item"></i></a>
+                                </div>
+                            </div>
+                        </li>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+    </div>
+
+</div>

@@ -1,0 +1,39 @@
+<div class="navbar navbar-default" ng-controller="NavController">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/home">Shopping List</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+
+            <!-- Left Nav -->
+            <ul class="nav navbar-nav">
+                <li ng-show="signedIn()"><a href="#/browse">Your Lists</a></li>
+            </ul>
+
+            <!-- Right Nav -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/login" ng-hide="signedIn()">Login</a></li>
+                <li><a href="#/register" ng-hide="signedIn()">Register</a></li>
+                <li class="dropdown user-dropdown" ng-show="signedIn()">
+                    <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{currentUser.profile.gravatar}}" alt="" class="img-circle gravatar"/>
+                        {{currentUser.profile.name}}
+                        <i class="mdi-navigation-expand-more"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)" data-toggle="modal" data-target="#pwModal">Change Password</a></li>
+                        <li><a href="" ng-click="logout()">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div ng-include="'app/views/partials/_changepassword.html'" ng-show="signedIn()"></div>
+            <div ng-include="'app/views/partials/_post.html'" ng-show="signedIn()"></div>
+
+        </div>
+    </div>
+</div>

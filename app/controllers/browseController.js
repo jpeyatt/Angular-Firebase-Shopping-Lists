@@ -10,6 +10,7 @@
         $scope.lists = ShoppingList.all;
         $scope.signedIn = Auth.signedIn;
 
+
         if ($routeParams.listId) {
             var list = $firebaseObject(ShoppingList.getList($routeParams.listId));
             setSelectedList(list);
@@ -27,6 +28,7 @@
 
         };
 
+        // Create List Item
         $scope.addItem = function () {
             var item = {
                 name: $scope.newItem.name,
@@ -39,16 +41,17 @@
             });
         };
 
+        // Update List Item
         $scope.updateItem = function(item) {
             ListItem.updateItem($scope.selectedList.$id, item);
         };
 
+        // Delete List Item
         $scope.deleteItem = function (item) {
             ListItem.deleteItem($scope.selectedList.$id, item);
         };
 
-
-        // Count Checked vs Unchecked
+        // Count Checked List Items vs Unchecked
         if ($scope.selectedList){
             $scope.$watch('items', function(){
                 var total = 0;
@@ -75,8 +78,6 @@
 
             }, true);
         }
-
-
 
     };
 

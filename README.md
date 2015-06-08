@@ -1,8 +1,10 @@
-# Angular-Firebase-Shopping-Lists
+# Angular-Firebase Shopping Lists
+<br />
 
 Libraries Used in this project:
+<br />
 
-Angular
-Firebase
-Bootstrap-Materialize
+Angular<br />
+Firebase<br />
+Bootstrap-Materialize<br />
 

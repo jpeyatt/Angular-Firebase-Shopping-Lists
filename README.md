@@ -10,7 +10,7 @@ Libraries Used in this project:
     <li>Bootstrap-Materialize</li>
 </ul>
 
-You can check out a live <a href="">Demo here</a>.<br/>
+You can check out a live <a href="http://jpeyatt.github.io/Angular-Firebase-Shopping-Lists" target="_blank">Demo here</a>.<br/>
 
 You may register your own user or use the test account that I've set up. <br/>
 

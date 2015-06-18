@@ -1,4 +1,4 @@
-<div class="list-group">
+<div class="list-group" ng-controller="ListController">
 
     <!-- Add a Shopping List -->
     <div class="text-center">
@@ -23,7 +23,7 @@
     </div><!-- / Placeholder for no Shopping Lists -->
 
     <!-- Shopping Lists -->
-    <span ng-repeat="list in lists | filter: createdBy: currentUser.profile.email:true  | filter: {title:searchList} | orderBy: 'datetime':true">
+    <span ng-repeat="list in lists | filter: {title:searchList} | filter: {createdBy:currentUser.uid} | orderBy: 'datetime':true">
         <a href="#/browse/{{list.$id}}" class="item-link">
             <div class="list-group-item">
                 <div class="col-sm-1 list-selected-icon">

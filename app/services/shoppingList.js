@@ -6,16 +6,20 @@
         .factory('ShoppingList', ['FURL', '$firebaseAuth', '$firebaseObject', '$firebaseArray', 'Auth', ShoppingList]);
 
     function ShoppingList(FURL, $firebaseAuth, $firebaseObject, $firebaseArray, Auth){
-        var ref = new Firebase(FURL);
-        var shoppingLists = $firebaseArray(ref.child('shoppingLists'));
         var user = Auth.user;
+        var ref = new Firebase(FURL + 'shoppingLists');
+        // var userid = user.uid.toString();
+        var shoppingLists =  $firebaseArray(ref);
 
         var ShoppingList = {
 
-            all: shoppingLists,
+            all: function(userId){
+                return $firebaseArray(ref.orderByChild('createdBy').equalTo(userId));
+            },
+            //all: shoppingLists,
 
             getList: function(listId){
-                return ref.child('shoppingLists').child(listId);
+                return ref.child(listId);
             },
 
             createList: function(list){

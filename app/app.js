@@ -22,11 +22,9 @@
                 }).
                 when('/browse', {
                     templateUrl: 'app/views/browse.html',
-                    controller: 'BrowseController'
                 }).
                 when('/browse/:listId', {
                     templateUrl: 'app/views/browse.html',
-                    controller: 'BrowseController'
                 }).
                 when('/register', {
                     templateUrl: 'app/views/auth/register.html',

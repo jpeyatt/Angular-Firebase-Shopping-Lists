@@ -3,13 +3,17 @@
 
     angular
         .module('SlApp')
-        .controller('BrowseController', ['$scope', '$location', 'Auth', 'toastr', 'ShoppingList', '$firebaseObject', '$routeParams', 'ListItem', BrowseController]);
+        .controller('ListDetailController', ['$scope', '$location', 'Auth', 'toastr', 'ShoppingList', '$firebaseObject', '$routeParams', 'ListItem', ListDetailController]);
 
-    function BrowseController($scope, $location, Auth, toastr, ShoppingList, $firebaseObject, $routeParams, ListItem){
+    function ListDetailController($scope, $location, Auth, toastr, ShoppingList, $firebaseObject, $routeParams, ListItem){
         $scope.searchList = '';
-        $scope.lists = ShoppingList.all;
+        // $scope.lists = ShoppingList.all;
         $scope.signedIn = Auth.signedIn;
+        $scope.currentUser = Auth.user;
 
+        var profileRef = new Firebase('https://ngshoppinglist.firebaseio.com/profile');
+
+        $scope.authData =  '';
 
         if ($routeParams.listId) {
             var list = $firebaseObject(ShoppingList.getList($routeParams.listId));
@@ -27,6 +31,18 @@
             $scope.items = ListItem.items(list.$id);
 
         };
+
+        $scope.editList = function (list) {
+            ShoppingList.editList(list);
+            toastr.info('Your list has been updated!');
+        };
+
+        $scope.deleteList = function (list) {
+            ShoppingList.deleteList(list);
+            toastr.warning('Your list has been deleted!');
+            $location.path('/browse')
+        };
+
 
         // Create List Item
         $scope.addItem = function () {

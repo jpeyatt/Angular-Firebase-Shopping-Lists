@@ -7,6 +7,7 @@
 
     function AuthController($scope, $location, Auth, toastr){
 
+
         if (Auth.signedIn()) {
             $location.path('/');
         }

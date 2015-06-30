@@ -10,6 +10,7 @@
         $scope.createList = function (list) {
             list.createdBy = Auth.user.uid;
             ShoppingList.createList(list);
+            $('#postModal').modal('hide');
             toastr.info('Your list has been created!');
         };
 

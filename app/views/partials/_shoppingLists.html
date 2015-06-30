@@ -1,4 +1,4 @@
-<div class="list-group" ng-controller="ListController">
+<div class="list-group" ng-controller="ListController"  class="ng-cloak">
 
     <!-- Add a Shopping List -->
     <div class="text-center">
@@ -24,11 +24,11 @@
 
     <!-- Shopping Lists -->
     <span ng-repeat="list in lists | filter: {title:searchList} | filter: {createdBy:currentUser.uid} | orderBy: 'datetime':true">
-        <a href="#/browse/{{list.$id}}" class="item-link">
+        <a href="#/browse/{{list.$id}}" ng-click="setSelectedList(list.$id)" class="item-link">
             <div class="list-group-item">
                 <div class="col-sm-1 list-selected-icon">
-                    <i class="mdi-toggle-radio-button-on" ng-show="selectedList.$id == list.$id"></i>
-                    <i class="mdi-toggle-radio-button-off" ng-hide="selectedList.$id == list.$id"></i>
+                    <i class="mdi-toggle-radio-button-on" ng-show="selectedListId == list.$id"></i>
+                    <i class="mdi-toggle-radio-button-off" ng-hide="selectedListId == list.$id"></i>
                 </div>
                 <div class="col-sm-7">
                     <h3 class="list-group-item-heading">{{list.title | limitTo: titleCharLimit}}

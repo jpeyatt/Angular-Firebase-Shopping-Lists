@@ -11,9 +11,11 @@
         $scope.signedIn = Auth.signedIn;
         $scope.currentUser = Auth.user;
 
-        var profileRef = new Firebase('https://ngshoppinglist.firebaseio.com/profile');
+        //var profileRef = new Firebase('https://ngshoppinglist.firebaseio.com/profile');
 
         $scope.authData =  '';
+
+        $scope.listDetailsLoading = true;
 
         if ($routeParams.listId) {
             var list = $firebaseObject(ShoppingList.getList($routeParams.listId));
@@ -27,20 +29,25 @@
                 $scope.isListCreator = ShoppingList.isCreator;
                 $scope.isComplete = ShoppingList.isComplete;
             }
-
             $scope.items = ListItem.items(list.$id);
+
 
         };
 
         $scope.editList = function (list) {
             ShoppingList.editList(list);
+            $('#editModal').modal('hide');
             toastr.info('Your list has been updated!');
         };
 
         $scope.deleteList = function (list) {
             ShoppingList.deleteList(list);
+            $('#deleteModal').modal('hide');
             toastr.warning('Your list has been deleted!');
-            $location.path('/browse')
+            $location.path('/browse');
+            $('#your-modal-id').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         };
 
 
@@ -91,6 +98,8 @@
                 $scope.remainingCount = remaining;
                 $scope.completedCount = total - remaining;
                 $scope.allChecked = remaining === 0;
+
+                $scope.listDetailsLoading = false;
 
             }, true);
         }

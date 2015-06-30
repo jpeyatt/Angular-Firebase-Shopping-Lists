@@ -11,7 +11,23 @@
     <link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.min.css"/>
 
     <style>
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
 
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #009688;
+
+            padding-top: 20px;
+        }
+
+        .footer p {
+            color: #eee;
+        }
         .user-dropdown .gravatar {
             width: 32px;
             margin-right: 8px;
@@ -98,6 +114,12 @@
     </div>
 
 </div>
+
+<footer class="footer">
+    <div class="container text-center">
+        <p>Angular Shopping List - Justin Peyatt &copy; 2015</p>
+    </div>
+</footer>
 
 
 <!-- Frameworks -->

@@ -6,6 +6,9 @@
         .controller('ListDetailController', ['$scope', '$location', 'Auth', 'toastr', 'ShoppingList', '$firebaseObject', '$routeParams', 'ListItem', ListDetailController]);
 
     function ListDetailController($scope, $location, Auth, toastr, ShoppingList, $firebaseObject, $routeParams, ListItem){
+
+        $scope.pageClass = 'page-list-details';
+
         $scope.searchList = '';
         // $scope.lists = ShoppingList.all;
         $scope.signedIn = Auth.signedIn;

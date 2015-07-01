@@ -39,15 +39,15 @@
 
         <!-- Add Item -->
         <div class="row">
-            <form ng-submit="addItem()">
+            <form name="addItemForm" ng-submit="addItem()">
                 <div class="col-sm-6">
-                    <input type="text" ng-model="newItem.name" class="form-control" placeholder="New Item"/>
+                    <input type="text" ng-model="newItem.name" class="form-control" placeholder="New Item" required/>
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" ng-model="newItem.qty" class="form-control" placeholder="How Much?"/>
+                    <input type="text" ng-model="newItem.qty" class="form-control" placeholder="How Much?" required/>
                 </div>
                 <div class="col-sm-2">
-                    <input type="submit" value="Add" class="btn btn-sm btn-info"/>
+                    <input type="submit" value="Add" class="btn btn-sm btn-info" ng-disabled="addItemForm.$invalid" />
                 </div>
             </form>
         </div>
@@ -78,7 +78,7 @@
 
         <div ng-hide="completedCount == 0">
             <div class="row text-center">
-                Don't show items I've checked off
+                Don't show items I've checked off&nbsp;
                 <input ng-model="dontShowDone" type="checkbox"/>
             </div>
 
